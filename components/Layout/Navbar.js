@@ -1,9 +1,12 @@
 import Link from "next/link";
-import styles from "./styles.module.css";
+import styles from "./styles/nav.module.scss";
 
 const Navigation = () => {
   return (
     <nav className={styles.nav}>
+      <Link href="/">
+        <a className={styles.logo}>Axinfinity</a>
+      </Link>
       <Link href="/">
         <a>Home</a>
       </Link>
