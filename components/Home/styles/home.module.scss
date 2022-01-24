@@ -7,7 +7,7 @@
 }
 
 .container {
-  max-width: 70rem;
+  max-width: var(--max-width);
   margin: auto;
 }
 

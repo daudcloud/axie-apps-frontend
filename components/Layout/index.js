@@ -1,7 +1,7 @@
 import Head from "next/head";
-import Navigation from "./Navbar";
+import Navbar from "./Navbar";
 
-const Layout = ({ children }) => {
+const Layout = ({ children, page }) => {
   return (
     <>
       <Head>
@@ -10,7 +10,7 @@ const Layout = ({ children }) => {
         <link rel="icon" href="/favicon.ico" />
       </Head>
       <header>
-        <Navigation />
+        <Navbar page={page} />
       </header>
       <main>{children}</main>
     </>

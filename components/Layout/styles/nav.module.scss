@@ -4,7 +4,7 @@
   display: flex;
   align-items: center;
   font-weight: 600;
-  gap: 1rem;
+  background: hsl(0, 0%, 95%);
   a {
     padding: 1em;
     transition: 0.1s ease-in-out;
@@ -12,20 +12,45 @@
   .logo {
     font-size: 1.7rem;
     padding: 0;
+    margin-right: 2rem;
   }
   .login {
     margin-left: auto;
   }
   a:not(.logo):hover {
-    background-color: hsl(0, 0%, 97%);
-    border-radius: 0.3rem;
+    background-color: hsl(0, 0%, 100%);
   }
   a.signup {
     background-color: var(--color-primary);
     color: white;
-    border-radius: 0.3rem;
   }
   a.signup:hover {
     background-color: var(--color-hover-primary);
+  }
+  .active {
+    position: relative;
+
+    &::before {
+      content: "";
+      position: absolute;
+      bottom: 0;
+      left: 0;
+      right: 0;
+      height: 2px;
+      z-index: 2;
+      background: var(--color-primary);
+      animation: activeNav 0.2s ease-in-out;
+    }
+  }
+}
+
+@keyframes activeNav {
+  0% {
+    left: 50%;
+    right: 50%;
+  }
+  100% {
+    left: 0;
+    right: 0;
   }
 }

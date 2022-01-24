@@ -6,6 +6,6 @@ module.exports = {
     includePaths: [path.join(__dirname, "styles")],
   },
   images: {
-    domains: ["marketplace.axieinfinity.com"],
+    domains: ["cdn.axieinfinity.com", "marketplace.axieinfinity.com"],
   },
 };

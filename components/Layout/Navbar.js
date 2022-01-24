@@ -1,34 +1,37 @@
 import Link from "next/link";
 import styles from "./styles/nav.module.scss";
 
-const Navigation = () => {
+const Navbar = ({ page }) => {
   return (
     <nav className={styles.nav}>
       <Link href="/">
         <a className={styles.logo}>Axinfinity</a>
       </Link>
       <Link href="/">
-        <a>Home</a>
+        <a className={page === "home" ? styles.active : null}>Home</a>
       </Link>
       <Link href="/dashboard">
-        <a>Dashboard</a>
+        <a className={page === "dashboard" ? styles.active : null}>Dashboard</a>
       </Link>
 
       <Link href="/card">
-        <a>Card</a>
+        <a className={page === "card" ? styles.active : null}>Card</a>
       </Link>
       <Link href="/login">
-        <a className={styles.login}>
-          <span>Login</span>
+        <a
+          className={[
+            styles.login,
+            page === "login" ? styles.active : null,
+          ].join(" ")}
+        >
+          Login
         </a>
       </Link>
       <Link href="/signup">
-        <a className={styles.signup}>
-          <span>Signup</span>
-        </a>
+        <a className={styles.signup}>Signup</a>
       </Link>
     </nav>
   );
 };
 
-export default Navigation;
+export default Navbar;
