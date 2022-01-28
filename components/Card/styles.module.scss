@@ -1,3 +1,7 @@
+.cardWrapper {
+  padding: 0 2em;
+}
+
 .container {
   max-width: var(--max-width);
   margin: auto;
@@ -8,18 +12,83 @@
   }
 
   .cards {
-    display: grid;
-    gap: 30px;
-    margin-top: 3rem;
-    grid-template-columns: repeat(5, 1fr);
+    display: flex;
+    flex-wrap: wrap;
+    column-gap: 30px;
+    row-gap: 40px;
+    justify-content: center;
+    margin-top: 4rem;
   }
 
   .card {
+    .cardPart {
+      font-weight: 500;
+      font-size: 0.9rem;
+      display: flex;
+      gap: 10px;
+      justify-content: center;
+      align-items: center;
+      text-transform: uppercase;
+      margin-bottom: 0.5rem;
+      & > span:last-child {
+        font-size: 0.8rem;
+      }
+    }
+    .partImage {
+      position: relative;
+      width: 30px;
+      height: 30px;
+    }
     .backgroundCard,
     .backgroundInfo {
       position: relative;
-      width: 100%;
-      height: 280px;
     }
+    .backgroundCard {
+      height: 250px;
+      width: 190px;
+    }
+    .backgroundInfo {
+      font-weight: 900;
+      font-size: 1.2rem;
+      width: 40px;
+      height: 40px;
+      top: 25%;
+      transform: translateX(-40%);
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      .attackImage {
+        position: relative;
+        width: 60%;
+        height: 60%;
+      }
+    }
+  }
+  .info {
+    position: absolute;
+    inset: 0;
+    color: white;
+    & * {
+      position: absolute;
+    }
+  }
+  .cardEffect {
+    position: relative;
+    width: 15px;
+    height: 15px;
+    top: calc(100% - 50px);
+  }
+  .cardName {
+    left: 50%;
+    font-size: 0.8rem;
+    transform: translateX(-50%);
+    top: 17px;
+    font-weight: 900;
+  }
+  .cardEnergy {
+    top: 13px;
+    left: 20px;
+    font-size: 1.2rem;
+    font-weight: 900;
   }
 }
