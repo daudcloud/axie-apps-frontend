@@ -16,7 +16,7 @@ const Card = () => {
         <h1>Axie Card</h1>
         <div className={styles.cards}>
           {cards.map((card) => (
-            <div className={styles.card} key={card.id}>
+            <div className={styles.card} key={card._id}>
               <div className={styles.cardPart}>
                 <div className={styles.partImage}>
                   <Image
