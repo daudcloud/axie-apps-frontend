@@ -18,14 +18,16 @@ const Card = () => {
           {cards.map((card) => (
             <div className={styles.card} key={card._id}>
               <div className={styles.cardPart}>
-                <div className={styles.partImage}>
-                  <Image
-                    src={`/images/axie-part/${card.classType}/${card.partType}.png`}
-                    layout="fill"
-                    objectFit="contain"
-                  />
+                <div>
+                  <div className={styles.partImage}>
+                    <Image
+                      src={`/images/axie-part/${card.classType}/${card.partType}.png`}
+                      layout="fill"
+                      objectFit="contain"
+                    />
+                  </div>
+                  <span>{card.part}</span>
                 </div>
-                <span>{card.part}</span>
                 <span>{`(${card.cardType})`}</span>
               </div>
               <div className={styles.backgroundCard}>
