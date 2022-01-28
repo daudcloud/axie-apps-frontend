@@ -83,12 +83,6 @@
     font-size: 0.8rem;
     font-weight: 900;
   }
-  .cardEnergy {
-    top: 13px;
-    left: 20px;
-    font-size: 1.2rem;
-    font-weight: 900;
-  }
   .cardHeader {
     display: flex;
     position: absolute;
@@ -98,9 +92,23 @@
     right: 0;
     height: 45px;
     padding-left: 1.4em;
-    gap: 30px;
-    > * {
+    padding-right: 1.4em;
+    & > * {
       position: static;
+    }
+
+    .cardEnergy {
+      top: 13px;
+      left: 20px;
+      font-size: 1.2rem;
+      font-weight: 900;
+      margin-right: 15px;
+      text-shadow: 1px 1px brown, -1px -1px brown, -1px 1px brown,
+        1px -1px brown;
+    }
+    .cardName {
+      flex-grow: 1;
+      text-align: center;
     }
   }
 
