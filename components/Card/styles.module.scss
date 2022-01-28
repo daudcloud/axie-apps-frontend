@@ -76,7 +76,7 @@
     position: relative;
     width: 15px;
     height: 15px;
-    top: calc(100% - 50px);
+    flex-shrink: 0;
   }
   .cardName {
     left: 50%;
@@ -90,5 +90,19 @@
     left: 20px;
     font-size: 1.2rem;
     font-weight: 900;
+  }
+  .cardFooter {
+    color: white;
+    font-size: 0.7rem;
+    position: absolute;
+    left: 0;
+    bottom: 0;
+    right: 0;
+    height: 90px;
+    display: flex;
+    align-items: center;
+    padding-left: 1.1em;
+    padding-right: 1.5em;
+    gap: 15px;
   }
 }

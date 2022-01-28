@@ -68,12 +68,15 @@ const Card = () => {
                     <span>{card.defense}</span>
                   </div>
                 </div>
-                <div className={styles.cardEffect}>
-                  <Image
-                    src={card.effectIcon}
-                    layout="fill"
-                    objectFit="contain"
-                  />
+                <div className={styles.cardFooter}>
+                  <div className={styles.cardEffect}>
+                    <Image
+                      src={card.effectIcon}
+                      layout="fill"
+                      objectFit="contain"
+                    />
+                  </div>
+                  <span className={styles.cardDesc}>{card.description}</span>
                 </div>
               </div>
             </div>
