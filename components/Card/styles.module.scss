@@ -78,6 +78,7 @@
     width: 15px;
     height: 15px;
     flex-shrink: 0;
+    margin-right: 15px;
   }
   .cardName {
     font-size: 0.8rem;
@@ -123,7 +124,6 @@
     display: flex;
     align-items: center;
     padding-left: 1.1em;
-    padding-right: 1.5em;
-    gap: 15px;
+    padding-right: 2em;
   }
 }
