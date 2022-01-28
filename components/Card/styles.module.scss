@@ -17,7 +17,8 @@
     column-gap: 30px;
     row-gap: 40px;
     justify-content: center;
-    margin-top: 4rem;
+    padding-top: 4rem;
+    padding-bottom: 6rem;
   }
 
   .card {
@@ -79,10 +80,7 @@
     flex-shrink: 0;
   }
   .cardName {
-    left: 50%;
     font-size: 0.8rem;
-    transform: translateX(-50%);
-    top: 17px;
     font-weight: 900;
   }
   .cardEnergy {
@@ -91,6 +89,21 @@
     font-size: 1.2rem;
     font-weight: 900;
   }
+  .cardHeader {
+    display: flex;
+    position: absolute;
+    align-items: center;
+    top: 3px;
+    left: 0;
+    right: 0;
+    height: 45px;
+    padding-left: 1.4em;
+    gap: 30px;
+    > * {
+      position: static;
+    }
+  }
+
   .cardFooter {
     color: white;
     font-size: 0.7rem;

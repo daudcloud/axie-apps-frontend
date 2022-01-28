@@ -35,8 +35,10 @@ const Card = () => {
                   objectFit="contain"
                 />
                 <div className={styles.info}>
-                  <span className={styles.cardEnergy}>{card.energy}</span>
-                  <span className={styles.cardName}>{card.name}</span>
+                  <div className={styles.cardHeader}>
+                    <span className={styles.cardEnergy}>{card.energy}</span>
+                    <span className={styles.cardName}>{card.name}</span>
+                  </div>
                   <div className={styles.backgroundInfo}>
                     <Image
                       src={`/images/bg-info-${card.classType.toLowerCase()}.png`}
