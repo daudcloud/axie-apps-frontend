@@ -20,5 +20,8 @@
     list-style-type: none;
     position: absolute;
     top: calc(100% + 20px);
+    & > * + * {
+      padding: 1em 0;
+    }
   }
 }

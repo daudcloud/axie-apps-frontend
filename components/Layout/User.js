@@ -1,8 +1,9 @@
 import { useState } from "react";
 import styles from "./styles/user.module.scss";
 
-const User = ({ logout }) => {
+const User = ({ logout, user }) => {
   const [userOption, setUserOption] = useState(false);
+  console.log(user);
   return (
     <>
       <div className={styles.user} onClick={() => setUserOption(!userOption)}>
@@ -10,6 +11,7 @@ const User = ({ logout }) => {
         <i className="fas fa-sort-down"></i>
         {userOption && (
           <ul>
+            <li>{user.firstName}</li>
             <li onClick={logout}>Logout</li>
           </ul>
         )}

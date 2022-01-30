@@ -44,7 +44,7 @@ const Navbar = ({ page }) => {
           </Link>
         </>
       ) : (
-        <User logout={logout} />
+        <User logout={logout} user={user} />
       )}
     </nav>
   );
