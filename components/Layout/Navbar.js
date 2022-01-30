@@ -20,9 +20,6 @@ const Navbar = ({ page }) => {
       <Link href="/">
         <a className={page === "home" ? styles.active : null}>Home</a>
       </Link>
-      <Link href="/dashboard">
-        <a className={page === "dashboard" ? styles.active : null}>Dashboard</a>
-      </Link>
 
       <Link href="/card">
         <a className={page === "card" ? styles.active : null}>Card</a>

@@ -5,7 +5,7 @@
   align-items: center;
   font-weight: 600;
   background: hsl(0, 0%, 95%);
-  a {
+  & > a {
     padding: 1em;
     transition: 0.1s ease-in-out;
   }
@@ -17,7 +17,7 @@
   .login {
     margin-left: auto;
   }
-  a:not(.logo):hover {
+  & > a:not(.logo):hover {
     background-color: hsl(0, 0%, 100%);
   }
   a.signup {

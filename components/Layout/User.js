@@ -1,3 +1,4 @@
+import Link from "next/link";
 import { useState } from "react";
 import styles from "./styles/user.module.scss";
 
@@ -11,7 +12,9 @@ const User = ({ logout, user }) => {
         <i className="fas fa-sort-down"></i>
         {userOption && (
           <ul>
-            <li>{user.firstName}</li>
+            <Link href="/dashboard">
+              <a>Dashboard</a>
+            </Link>
             <li onClick={logout}>Logout</li>
           </ul>
         )}

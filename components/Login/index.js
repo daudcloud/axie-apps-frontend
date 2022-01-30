@@ -39,11 +39,10 @@ const Login = () => {
     setSuccess({ ...success, message: message });
     localStorage.setItem("token", token);
     Router.reload();
-    Router.push("/");
   };
 
   useEffect(() => {
-    if (user) Router.push("/");
+    if (user) Router.push("/dashboard");
   }, [user]);
   console.log(user);
   return (

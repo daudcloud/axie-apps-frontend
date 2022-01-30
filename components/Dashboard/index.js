@@ -1,5 +1,8 @@
+import { useUser } from "../../contexts/UserContext";
+
 const Dashboard = () => {
-  return <h1>Dashboard</h1>;
+  const [user, setUser] = useUser();
+  return <>{user ? <h1>{`${user.firstName} ${user.lastName}`}</h1> : null}</>;
 };
 
 export default Dashboard;
