@@ -9,12 +9,13 @@ const Login = () => {
     email: "",
     password: "",
   });
-  const [errors, setErrors] = useState({ message: "" });
-  const [success, setSuccess] = useState({ message: "" });
+  const [errors, setErrors] = useState({ error: false, message: "" });
   const [user, setUser] = useUser();
+
   const handleChange = (e) => {
     setDataPost({ ...dataPost, [e.target.name]: e.target.value });
   };
+
   const handleSubmit = async (e) => {
     e.preventDefault();
     if (dataPost.email === "" || dataPost.password === "") {
@@ -32,11 +33,9 @@ const Login = () => {
     });
     const { success, token, message } = await res.json();
     if (!success) {
-      setSuccess({ ...success, message: "" });
-      return setErrors({ ...errors, message });
+      return setErrors({ ...errors, message, error: true });
     }
-    setErrors({ ...success, message: "" });
-    setSuccess({ ...success, message: message });
+    setErrors({ ...errors, message, error: false });
     localStorage.setItem("token", token);
     Router.reload();
   };
@@ -44,14 +43,14 @@ const Login = () => {
   useEffect(() => {
     if (user) Router.push("/dashboard");
   }, [user]);
-  console.log(user);
+
   return (
     <div className={styles.formContainer}>
-      {errors.message !== "" && (
+      {errors.message !== "" && errors.error && (
         <div className={styles.errors}>{errors.message}</div>
       )}
-      {success.message !== "" && (
-        <div className={styles.success}>{success.message}</div>
+      {errors.message !== "" && !errors.error && (
+        <div className={styles.success}>{errors.message}</div>
       )}
       <form onSubmit={handleSubmit}>
         <input

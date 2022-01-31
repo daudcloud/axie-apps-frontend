@@ -4,7 +4,6 @@ import styles from "./styles/user.module.scss";
 
 const User = ({ logout, user }) => {
   const [userOption, setUserOption] = useState(false);
-  console.log(user);
   return (
     <>
       <div className={styles.user} onClick={() => setUserOption(!userOption)}>

@@ -12,8 +12,7 @@ const Login = () => {
     password: "",
     roninAddress: "",
   });
-  const [errors, setErrors] = useState({ message: "" });
-  const [success, setSuccess] = useState({ message: "" });
+  const [errors, setErrors] = useState({ error: false, message: "" });
   const [user, setUser] = useUser();
   const handleChange = (e) => {
     setDataPost({ ...dataPost, [e.target.name]: e.target.value });
@@ -40,21 +39,24 @@ const Login = () => {
     });
     const { success, message } = await res.json();
     if (!success) {
-      setSuccess({ ...success, message: "" });
-      return setErrors({ ...errors, message });
+      return setErrors({ ...errors, error: true, message });
     }
-    setErrors({ ...success, message: "" });
-    setSuccess({ ...success, message: message });
+    setErrors({ ...success, error: false, message });
+    Router.push("/login");
   };
 
-  console.log(user);
+  useEffect(() => {
+    console.log(user);
+    if (user) Router.push("/dashboard");
+  }, [user]);
+
   return (
     <div className={styles.formContainer}>
-      {errors.message !== "" && (
+      {errors.message !== "" && errors.error && (
         <div className={styles.errors}>{errors.message}</div>
       )}
-      {success.message !== "" && (
-        <div className={styles.success}>{success.message}</div>
+      {errors.message !== "" && !errors.error && (
+        <div className={styles.success}>{errors.message}</div>
       )}
       <form onSubmit={handleSubmit}>
         <input

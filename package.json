@@ -1,5 +1,6 @@
 {
   "name": "axie-app-frontend",
+  "proxy": "https://game-api.axie.technology/",
   "private": true,
   "scripts": {
     "dev": "next dev",
