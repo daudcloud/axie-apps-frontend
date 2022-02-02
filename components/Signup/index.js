@@ -11,8 +11,9 @@ const Login = () => {
     email: "",
     password: "",
     roninAddress: "",
+    confirmPassword: "",
   });
-  const [errors, setErrors] = useState({ error: false, message: "" });
+  const [status, setStatus] = useState({ error: false, message: "" });
   const [user, setUser] = useUser();
   const handleChange = (e) => {
     setDataPost({ ...dataPost, [e.target.name]: e.target.value });
@@ -25,9 +26,17 @@ const Login = () => {
       dataPost.firstName === "" ||
       dataPost.lastName === ""
     ) {
-      return setErrors({
-        ...errors,
+      return setStatus({
+        ...status,
+        error: true,
         message: "Fields must be filled",
+      });
+    }
+    if (dataPost.password !== dataPost.confirmPassword) {
+      return setStatus({
+        ...status,
+        error: true,
+        message: "Password and Confirm Password doesnt match",
       });
     }
     const res = await fetch("http://localhost:5000/api/auth/register", {
@@ -39,9 +48,9 @@ const Login = () => {
     });
     const { success, message } = await res.json();
     if (!success) {
-      return setErrors({ ...errors, error: true, message });
+      return setStatus({ ...status, error: true, message });
     }
-    setErrors({ ...success, error: false, message });
+    setStatus({ ...status, error: false, message });
     Router.push("/login");
   };
 
@@ -52,12 +61,13 @@ const Login = () => {
 
   return (
     <div className={styles.formContainer}>
-      {errors.message !== "" && errors.error && (
-        <div className={styles.errors}>{errors.message}</div>
+      {status.message !== "" && status.error && (
+        <div className={styles.errors}>{status.message}</div>
       )}
-      {errors.message !== "" && !errors.error && (
-        <div className={styles.success}>{errors.message}</div>
+      {status.message !== "" && !status.error && (
+        <div className={styles.success}>{status.message}</div>
       )}
+
       <form onSubmit={handleSubmit}>
         <input
           type="text"
@@ -93,6 +103,13 @@ const Login = () => {
           placeholder="Password"
           onChange={handleChange}
           value={dataPost.password}
+        />
+        <input
+          type="password"
+          name="confirmPassword"
+          placeholder="Confirm Password"
+          onChange={handleChange}
+          value={dataPost.confirmPassword}
         />
         <button type="submit">Sign up</button>
         <Link href="/login">

@@ -1,0 +1,2 @@
+maxbrand99.notion.site/Sky-Mavis-Game-API-Proxies-05870c1221cc4fd0b702e9d0ec7daa28
+https://api.binance.com/api/v3/ticker/price
