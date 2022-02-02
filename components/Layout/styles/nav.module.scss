@@ -42,6 +42,45 @@
       animation: activeNav 0.2s ease-in-out;
     }
   }
+  .modalWrapper {
+    position: absolute;
+    inset: 0;
+    background: hsla(0, 0%, 0%, 0.4);
+    height: 100vh;
+  }
+  .modal {
+    position: absolute;
+    left: 50%;
+    top: 50%;
+    transform: translate(-50%, -50%);
+    background: white;
+    padding: 2rem;
+    text-align: center;
+    h1 {
+      margin-bottom: 1rem;
+    }
+
+    button {
+      background: var(--color-primary);
+      outline: none;
+      border: none;
+      padding: 0.6em 1.5em;
+      font-size: 1.2rem;
+      border-radius: 0.5rem;
+      color: white;
+      cursor: pointer;
+      &:hover {
+        background: var(--color-hover-primary);
+      }
+      &:last-child {
+        margin-left: 2rem;
+        background: var(--color-border-errors);
+        &:hover {
+          background: var(--color-hover-errors);
+        }
+      }
+    }
+  }
 }
 
 @keyframes activeNav {

@@ -1,16 +1,24 @@
 import Link from "next/link";
 import Router from "next/router";
+import { useState } from "react";
 import { useUser } from "../../contexts/UserContext";
 import styles from "./styles/nav.module.scss";
 import User from "./User";
 
 const Navbar = ({ page }) => {
   const [user, setUser] = useUser();
+  const [modal, setModal] = useState(false);
   const logout = (e) => {
     e.preventDefault();
     if (!user) return;
     window.localStorage.removeItem("token");
+    setModal(false);
     Router.reload();
+  };
+
+  const cancel = (e) => {
+    e.preventDefault();
+    setModal(false);
   };
   return (
     <nav className={styles.nav}>
@@ -41,7 +49,16 @@ const Navbar = ({ page }) => {
           </Link>
         </>
       ) : (
-        <User logout={logout} user={user} />
+        <User logout={logout} setModal={setModal} user={user} />
+      )}
+      {modal && (
+        <div className={styles.modalWrapper}>
+          <div className={styles.modal}>
+            <h1>Are you sure u want to logout?</h1>
+            <button onClick={logout}>Yes</button>
+            <button onClick={cancel}>No</button>
+          </div>
+        </div>
       )}
     </nav>
   );

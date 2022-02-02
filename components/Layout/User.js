@@ -2,7 +2,7 @@ import Link from "next/link";
 import { useState } from "react";
 import styles from "./styles/user.module.scss";
 
-const User = ({ logout, user }) => {
+const User = ({ setModal }) => {
   const [userOption, setUserOption] = useState(false);
   return (
     <>
@@ -10,12 +10,14 @@ const User = ({ logout, user }) => {
         <div className={styles.userImage}></div>
         <i className="fas fa-sort-down"></i>
         {userOption && (
-          <ul>
-            <Link href="/dashboard">
-              <a>Dashboard</a>
-            </Link>
-            <li onClick={logout}>Logout</li>
-          </ul>
+          <>
+            <ul>
+              <Link href="/dashboard">
+                <a>Dashboard</a>
+              </Link>
+              <li onClick={() => setModal(true)}>Logout</li>
+            </ul>
+          </>
         )}
       </div>
     </>
