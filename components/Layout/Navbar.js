@@ -1,6 +1,7 @@
+import Image from "next/image";
 import Link from "next/link";
 import Router from "next/router";
-import { useState } from "react";
+import { useEffect, useLayoutEffect, useState } from "react";
 import { useUser } from "../../contexts/UserContext";
 import styles from "./styles/nav.module.scss";
 import User from "./User";
@@ -8,6 +9,38 @@ import User from "./User";
 const Navbar = ({ page }) => {
   const [user, setUser] = useUser();
   const [modal, setModal] = useState(false);
+  const [slpPrice, setSlpPrice] = useState("");
+  const [ethPrice, setEthPrice] = useState("");
+  const [axsPrice, setAxsPrice] = useState("");
+
+  const getSlpPrice = async () => {
+    const res = await fetch("https://api.binance.com/api/v3/ticker/price?symbol=SLPUSDT")
+    const data = await res.json()
+    // console.log(parseFloat(data.price))
+    return parseFloat(data.price)
+  }
+  const getEthPrice = async () => {
+    const res = await fetch("https://api.binance.com/api/v3/ticker/price?symbol=ETHUSDT")
+    const data = await res.json()
+    // console.log(parseFloat(data.price))
+    return parseFloat(data.price)
+  }
+  const getAxsPrice = async () => {
+    const res = await fetch("https://api.binance.com/api/v3/ticker/price?symbol=AXSUSDT")
+    const data = await res.json()
+    // console.log(parseFloat(data.price))
+    return parseFloat(data.price)
+  }
+
+  useEffect(async () => {
+    let slp = await getSlpPrice()
+    let eth = await getEthPrice()
+    let axs = await getAxsPrice()
+    setSlpPrice(slp)
+    setEthPrice(eth)
+    setAxsPrice(axs)
+  }, [])
+
   const logout = (e) => {
     e.preventDefault();
     if (!user) return;
@@ -23,7 +56,7 @@ const Navbar = ({ page }) => {
   return (
     <nav className={styles.nav}>
       <Link href="/">
-        <a className={styles.logo}>Axinfinity</a>
+        <a className={styles.logo}>Ax</a>
       </Link>
       <Link href="/">
         <a className={page === "home" ? styles.active : null}>Home</a>
@@ -32,6 +65,26 @@ const Navbar = ({ page }) => {
       <Link href="/card">
         <a className={page === "card" ? styles.active : null}>Card</a>
       </Link>
+      <div className={styles.tokenContainer}>
+        <span className={styles.axieToken}>
+          <div className={styles.imgToken}>
+            <Image src="/images/slp.png" width="20px" height="20px" />
+          </div>
+          {`$${slpPrice}`}
+        </span>
+        <span className={styles.axieToken}>
+          <div className={styles.imgToken}>
+            <Image src="/images/eth.png" width="20px" height="20px" />
+          </div>
+          {`$${ethPrice}`}
+        </span>
+        <span className={styles.axieToken}>
+          <div className={styles.imgToken}>
+            <Image src="/images/axs.png" width="20px" height="20px" />
+          </div>
+          {`$${axsPrice}`}
+        </span>
+      </div>
       {!user ? (
         <>
           <Link href="/login">

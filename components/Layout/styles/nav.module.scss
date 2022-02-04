@@ -81,6 +81,21 @@
       }
     }
   }
+
+  .tokenContainer {
+    display: flex;
+    gap: .6rem;
+    margin-left: auto;
+  }
+
+  .axieToken {
+    display: flex;
+    gap: .5rem;
+    align-items: center;
+    font-size: .8rem;
+    font-weight: 700;
+    color: hsl(0, 0%, 50%);
+  }
 }
 
 @keyframes activeNav {
