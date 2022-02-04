@@ -59,11 +59,11 @@ const Navbar = ({ page }) => {
         <a className={styles.logo}>Ax</a>
       </Link>
       <Link href="/">
-        <a className={page === "home" ? styles.active : null}>Home</a>
+        <a className={page === "Home" ? styles.active : null}>Home</a>
       </Link>
 
       <Link href="/card">
-        <a className={page === "card" ? styles.active : null}>Card</a>
+        <a className={page === "Card" ? styles.active : null}>Card</a>
       </Link>
       <div className={styles.tokenContainer}>
         <span className={styles.axieToken}>
@@ -91,7 +91,7 @@ const Navbar = ({ page }) => {
             <a
               className={[
                 styles.login,
-                page === "login" ? styles.active : null,
+                page === "Login" ? styles.active : null,
               ].join(" ")}
             >
               Login

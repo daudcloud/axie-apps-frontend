@@ -4,7 +4,7 @@ import { useUser } from "../../contexts/UserContext";
 import styles from "./styles.module.scss";
 import Link from "next/link";
 
-const Login = () => {
+const Signup = () => {
   const [dataPost, setDataPost] = useState({
     firstName: "",
     lastName: "",
@@ -55,7 +55,6 @@ const Login = () => {
   };
 
   useEffect(() => {
-    console.log(user);
     if (user) Router.push("/dashboard");
   }, [user]);
 
@@ -122,4 +121,4 @@ const Login = () => {
   );
 };
 
-export default Login;
+export default Signup;
