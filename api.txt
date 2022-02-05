@@ -1,2 +1,3 @@
 maxbrand99.notion.site/Sky-Mavis-Game-API-Proxies-05870c1221cc4fd0b702e9d0ec7daa28
 https://api.binance.com/api/v3/ticker/price
+https://axieinfinity.com/graphql-server-v2/graphql?query={axies(from:0,size:100,sort:IdAsc,owner:%220x4a58b78ace13d43fc53518a2c44776c2132cd7ff%22){total,results{id}}}
