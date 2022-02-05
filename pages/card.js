@@ -2,7 +2,5 @@ import Card from "../components/Card";
 import Layout from "../components/Layout";
 
 export default function CardPage() {
-  return (
-        <Card />
-  );
+  return <Card title="AxFinity | Cards" />;
 }

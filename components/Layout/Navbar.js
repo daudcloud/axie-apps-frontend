@@ -14,32 +14,38 @@ const Navbar = ({ page }) => {
   const [axsPrice, setAxsPrice] = useState("");
 
   const getSlpPrice = async () => {
-    const res = await fetch("https://api.binance.com/api/v3/ticker/price?symbol=SLPUSDT")
-    const data = await res.json()
+    const res = await fetch(
+      "https://api.binance.com/api/v3/ticker/price?symbol=SLPUSDT"
+    );
+    const data = await res.json();
     // console.log(parseFloat(data.price))
-    return parseFloat(data.price)
-  }
+    return parseFloat(data.price);
+  };
   const getEthPrice = async () => {
-    const res = await fetch("https://api.binance.com/api/v3/ticker/price?symbol=ETHUSDT")
-    const data = await res.json()
+    const res = await fetch(
+      "https://api.binance.com/api/v3/ticker/price?symbol=ETHUSDT"
+    );
+    const data = await res.json();
     // console.log(parseFloat(data.price))
-    return parseFloat(data.price)
-  }
+    return parseFloat(data.price);
+  };
   const getAxsPrice = async () => {
-    const res = await fetch("https://api.binance.com/api/v3/ticker/price?symbol=AXSUSDT")
-    const data = await res.json()
+    const res = await fetch(
+      "https://api.binance.com/api/v3/ticker/price?symbol=AXSUSDT"
+    );
+    const data = await res.json();
     // console.log(parseFloat(data.price))
-    return parseFloat(data.price)
-  }
+    return parseFloat(data.price);
+  };
 
   useEffect(async () => {
-    let slp = await getSlpPrice()
-    let eth = await getEthPrice()
-    let axs = await getAxsPrice()
-    setSlpPrice(slp)
-    setEthPrice(eth)
-    setAxsPrice(axs)
-  }, [])
+    let slp = await getSlpPrice();
+    let eth = await getEthPrice();
+    let axs = await getAxsPrice();
+    setSlpPrice(slp);
+    setEthPrice(eth);
+    setAxsPrice(axs);
+  }, []);
 
   const logout = (e) => {
     e.preventDefault();
@@ -56,7 +62,7 @@ const Navbar = ({ page }) => {
   return (
     <nav className={styles.nav}>
       <Link href="/">
-        <a className={styles.logo}>Ax</a>
+        <a className={styles.logo}>AxFinity</a>
       </Link>
       <Link href="/">
         <a className={page === "Home" ? styles.active : null}>Home</a>
