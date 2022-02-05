@@ -19,9 +19,21 @@
   ul {
     list-style-type: none;
     position: absolute;
-    top: calc(100% + 20px);
-    & > * + * {
-      padding: 1em 0;
+    display: flex;
+    flex-direction: column;
+    top: calc(100% + 10px);
+    box-shadow: 1px 1px 5px 1px hsla(0, 0%, 10%, 0.2);
+    background: var(--color-bg-nav);
+    border-radius: 0.3rem;
+    right: 0;
+    padding: 0.5em 0;
+    font-size: 0.9rem;
+    > * {
+      padding: 0.4em 2em;
+
+      &:hover {
+        background: var(--color-bg-hover-nav);
+      }
     }
   }
 }

@@ -108,7 +108,7 @@ const Navbar = ({ page }) => {
           </Link>
         </>
       ) : (
-        <User logout={logout} setModal={setModal} user={user} />
+        <User setModal={setModal} />
       )}
       {modal && (
         <div className={styles.modalWrapper}>
