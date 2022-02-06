@@ -9,9 +9,11 @@ import User from "./User";
 const Navbar = ({ page }) => {
   const [user, setUser] = useUser();
   const [modal, setModal] = useState(false);
-  const [slpPrice, setSlpPrice] = useState("");
-  const [ethPrice, setEthPrice] = useState("");
-  const [axsPrice, setAxsPrice] = useState("");
+  const [tokenPrice, setTokenPrice] = useState({
+    slp: "",
+    eth: "",
+    axs: ""
+  })
 
   const getSlpPrice = async () => {
     const res = await fetch(
@@ -39,12 +41,10 @@ const Navbar = ({ page }) => {
   };
 
   useEffect(async () => {
-    let slp = await getSlpPrice();
-    let eth = await getEthPrice();
-    let axs = await getAxsPrice();
-    setSlpPrice(slp);
-    setEthPrice(eth);
-    setAxsPrice(axs);
+    const slp = await getSlpPrice();
+    const eth = await getEthPrice();
+    const axs = await getAxsPrice();
+    setTokenPrice({...tokenPrice, slp, eth, axs })
   }, []);
 
   const logout = (e) => {
@@ -76,19 +76,19 @@ const Navbar = ({ page }) => {
           <div className={styles.imgToken}>
             <Image src="/images/slp.png" width="20px" height="20px" />
           </div>
-          {`$${slpPrice}`}
+          {`$${tokenPrice.slp}`}
         </span>
         <span className={styles.axieToken}>
           <div className={styles.imgToken}>
             <Image src="/images/eth.png" width="20px" height="20px" />
           </div>
-          {`$${ethPrice}`}
+          {`$${tokenPrice.eth}`}
         </span>
         <span className={styles.axieToken}>
           <div className={styles.imgToken}>
             <Image src="/images/axs.png" width="20px" height="20px" />
           </div>
-          {`$${axsPrice}`}
+          {`$${tokenPrice.axs}`}
         </span>
       </div>
       {!user ? (

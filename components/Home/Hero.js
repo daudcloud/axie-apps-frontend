@@ -33,7 +33,7 @@ const Hero = ({ styles, timeLeft }) => {
         </div>
         <div className={styles.col}>
           <div className={styles.imgContainer}>
-            <Image src="/images/lny-2022.jpg" layout="fill" objectFit="cover" />
+            <Image src="/images/lny-2022.jpg" layout="fill" objectFit="cover" priority />
           </div>
         </div>
       </div>

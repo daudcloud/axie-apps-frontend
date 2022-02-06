@@ -35,7 +35,6 @@ const Card = () => {
                   src={card.backgroundCard}
                   layout="fill"
                   objectFit="contain"
-                  priority
                 />
                 <div className={styles.info}>
                   <div className={styles.cardHeader}>

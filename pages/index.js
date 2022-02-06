@@ -1,5 +1,5 @@
 import Home from "../components/Home";
 
 export default function HomePage() {
-  return <Home title="AxFinity | Home" />;
+  return <Home page="home" title="AxFinity | Home" />;
 }

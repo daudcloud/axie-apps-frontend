@@ -1,5 +1,5 @@
 import Dashboard from "../components/Dashboard";
 
 export default function DashboardPage() {
-  return <Dashboard title="AxFinity | Dashboard" />;
+  return <Dashboard page="dashboard" title="AxFinity | Dashboard" />;
 }
