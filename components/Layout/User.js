@@ -10,6 +10,7 @@ const User = ({ setModal, setMenuOpen }) => {
   const [userOption, setUserOption] = useState(false);
   const [userAxies, setUserAxies] = useState([]);
   useEffect(async () => {
+    if (user.roninAddress === "") return;
     const _userAxies = await getUserAxies(user);
     setUserAxies(_userAxies);
   }, []);
