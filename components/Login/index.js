@@ -45,35 +45,37 @@ const Login = () => {
   }, [user]);
 
   return (
-    <div className={styles.formContainer}>
-      {errors.message !== "" && errors.error && (
-        <div className={styles.errors}>{errors.message}</div>
-      )}
-      {errors.message !== "" && !errors.error && (
-        <div className={styles.success}>{errors.message}</div>
-      )}
-      <form onSubmit={handleSubmit}>
-        <input
-          type="text"
-          name="email"
-          placeholder="Email Address"
-          onChange={handleChange}
-          value={dataPost.email}
-        />
-        <input
-          type="password"
-          name="password"
-          placeholder="Password"
-          onChange={handleChange}
-          value={dataPost.password}
-        />
-        <button type="submit">Log In</button>
-        <Link href="/signup">
-          <a>
-            <button className={styles.btnSecondary}>Sign Up</button>
-          </a>
-        </Link>
-      </form>
+    <div className={styles.container}>
+      <div className={styles.formContainer}>
+        {errors.message !== "" && errors.error && (
+          <div className={styles.errors}>{errors.message}</div>
+        )}
+        {errors.message !== "" && !errors.error && (
+          <div className={styles.success}>{errors.message}</div>
+        )}
+        <form onSubmit={handleSubmit}>
+          <input
+            type="text"
+            name="email"
+            placeholder="Email Address"
+            onChange={handleChange}
+            value={dataPost.email}
+          />
+          <input
+            type="password"
+            name="password"
+            placeholder="Password"
+            onChange={handleChange}
+            value={dataPost.password}
+          />
+          <button type="submit">Log In</button>
+          <Link href="/signup">
+            <a>
+              <button className={styles.btnSecondary}>Sign Up</button>
+            </a>
+          </Link>
+        </form>
+      </div>
     </div>
   );
 };

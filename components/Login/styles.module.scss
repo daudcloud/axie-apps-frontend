@@ -1,10 +1,14 @@
-.formContainer {
-  margin: auto;
+.container {
+  padding: 0 1.5em;
   margin-top: 7rem;
-  max-width: 500px;
+}
+
+.formContainer {
   box-shadow: 0 2px 4px rgb(0 0 0 / 10%), 0 8px 16px rgb(0 0 0 / 10%);
   border-radius: 0.5rem;
+  margin: auto;
 
+  max-width: 500px;
   padding: 1em;
   form {
     & > * + * {

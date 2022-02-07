@@ -12,8 +12,9 @@ const Navbar = ({ page }) => {
   const [tokenPrice, setTokenPrice] = useState({
     slp: "",
     eth: "",
-    axs: ""
-  })
+    axs: "",
+  });
+  const [menuOpen, setMenuOpen] = useState(false);
 
   const getSlpPrice = async () => {
     const res = await fetch(
@@ -44,7 +45,7 @@ const Navbar = ({ page }) => {
     const slp = await getSlpPrice();
     const eth = await getEthPrice();
     const axs = await getAxsPrice();
-    setTokenPrice({...tokenPrice, slp, eth, axs })
+    setTokenPrice({ ...tokenPrice, slp, eth, axs });
   }, []);
 
   const logout = (e) => {
@@ -64,58 +65,85 @@ const Navbar = ({ page }) => {
       <Link href="/">
         <a className={styles.logo}>AxFinity</a>
       </Link>
-      <Link href="/">
-        <a className={page === "Home" ? styles.active : null}>Home</a>
-      </Link>
-
-      <Link href="/card">
-        <a className={page === "Card" ? styles.active : null}>Card</a>
-      </Link>
-      <div className={styles.tokenContainer}>
-        <span className={styles.axieToken}>
-          <div className={styles.imgToken}>
-            <Image src="/images/slp.png" width="20px" height="20px" />
-          </div>
-          {`$${tokenPrice.slp}`}
-        </span>
-        <span className={styles.axieToken}>
-          <div className={styles.imgToken}>
-            <Image src="/images/eth.png" width="20px" height="20px" />
-          </div>
-          {`$${tokenPrice.eth}`}
-        </span>
-        <span className={styles.axieToken}>
-          <div className={styles.imgToken}>
-            <Image src="/images/axs.png" width="20px" height="20px" />
-          </div>
-          {`$${tokenPrice.axs}`}
-        </span>
+      <div
+        className={`${styles.hamburger} ${menuOpen ? styles.open : ""}`}
+        onClick={() => setMenuOpen((prev) => !menuOpen)}
+      >
+        <div className={styles.slice}></div>
+        <div className={styles.slice}></div>
+        <div className={styles.slice}></div>
       </div>
-      {!user ? (
-        <>
-          <Link href="/login">
-            <a
+      <div className={`${styles.navList} ${menuOpen ? styles.open : ""}`}>
+        <li
+          className={page === "Home" ? styles.active : null}
+          onClick={() => setMenuOpen(false)}
+        >
+          <Link href="/">
+            <a>Home</a>
+          </Link>
+        </li>
+        <li
+          className={page === "Card" ? styles.active : null}
+          onClick={() => setMenuOpen(false)}
+        >
+          <Link href="/card">
+            <a>Card</a>
+          </Link>
+        </li>
+
+        <li className={styles.tokenContainer}>
+          <span className={styles.axieToken}>
+            <div className={styles.imgToken}>
+              <Image src="/images/slp.png" layout="fill" objectFit="contain" />
+            </div>
+            {`$${tokenPrice.slp}`}
+          </span>
+          <span className={styles.axieToken}>
+            <div className={styles.imgToken}>
+              <Image src="/images/eth.png" layout="fill" objectFit="contain" />
+            </div>
+            {`$${tokenPrice.eth}`}
+          </span>
+          <span className={styles.axieToken}>
+            <div className={styles.imgToken}>
+              <Image src="/images/axs.png" layout="fill" objectFit="contain" />
+            </div>
+            {`$${tokenPrice.axs}`}
+          </span>
+        </li>
+        {!user ? (
+          <>
+            <li
               className={[
                 styles.login,
                 page === "Login" ? styles.active : null,
               ].join(" ")}
+              onClick={() => setMenuOpen(false)}
             >
-              Login
-            </a>
-          </Link>
-          <Link href="/signup">
-            <a className={styles.signup}>Signup</a>
-          </Link>
-        </>
-      ) : (
-        <User setModal={setModal} />
-      )}
+              <Link href="/login">
+                <a>Login</a>
+              </Link>
+            </li>
+            <li className={styles.signup} onClick={() => setMenuOpen(false)}>
+              <Link href="/signup">
+                <a>Signup</a>
+              </Link>
+            </li>
+          </>
+        ) : (
+          <li className={styles.userContainer}>
+            <User setModal={setModal} setMenuOpen={setMenuOpen} />
+          </li>
+        )}
+      </div>
       {modal && (
         <div className={styles.modalWrapper}>
           <div className={styles.modal}>
             <h1>Are you sure u want to logout?</h1>
-            <button onClick={logout}>Yes</button>
-            <button onClick={cancel}>No</button>
+            <div className={styles.confirmButton}>
+              <button onClick={logout}>Yes</button>
+              <button onClick={cancel}>No</button>
+            </div>
           </div>
         </div>
       )}
