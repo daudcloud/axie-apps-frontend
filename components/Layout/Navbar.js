@@ -75,7 +75,7 @@ const Navbar = ({ page }) => {
       </div>
       <div className={`${styles.navList} ${menuOpen ? styles.open : ""}`}>
         <li
-          className={page === "Home" ? styles.active : null}
+          className={page === "home" ? styles.active : null}
           onClick={() => setMenuOpen(false)}
         >
           <Link href="/">
@@ -83,7 +83,7 @@ const Navbar = ({ page }) => {
           </Link>
         </li>
         <li
-          className={page === "Card" ? styles.active : null}
+          className={page === "card" ? styles.active : null}
           onClick={() => setMenuOpen(false)}
         >
           <Link href="/card">
@@ -116,7 +116,7 @@ const Navbar = ({ page }) => {
             <li
               className={[
                 styles.login,
-                page === "Login" ? styles.active : null,
+                page === "login" ? styles.active : null,
               ].join(" ")}
               onClick={() => setMenuOpen(false)}
             >

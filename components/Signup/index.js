@@ -59,64 +59,66 @@ const Signup = () => {
   }, [user]);
 
   return (
-    <div className={styles.formContainer}>
-      {status.message !== "" && status.error && (
-        <div className={styles.errors}>{status.message}</div>
-      )}
-      {status.message !== "" && !status.error && (
-        <div className={styles.success}>{status.message}</div>
-      )}
+    <div className={styles.container}>
+      <div className={styles.formContainer}>
+        {status.message !== "" && status.error && (
+          <div className={styles.errors}>{status.message}</div>
+        )}
+        {status.message !== "" && !status.error && (
+          <div className={styles.success}>{status.message}</div>
+        )}
 
-      <form onSubmit={handleSubmit}>
-        <input
-          type="text"
-          name="firstName"
-          placeholder="First Name"
-          onChange={handleChange}
-          value={dataPost.firstName}
-        />
-        <input
-          type="text"
-          name="lastName"
-          placeholder="Last Name"
-          onChange={handleChange}
-          value={dataPost.lastName}
-        />
-        <input
-          type="text"
-          name="email"
-          placeholder="Email Address"
-          onChange={handleChange}
-          value={dataPost.email}
-        />
-        <input
-          type="text"
-          name="roninAddress"
-          placeholder="Ronin Address (Can be added later)"
-          onChange={handleChange}
-          value={dataPost.roninAddress}
-        />
-        <input
-          type="password"
-          name="password"
-          placeholder="Password"
-          onChange={handleChange}
-          value={dataPost.password}
-        />
-        <input
-          type="password"
-          name="confirmPassword"
-          placeholder="Confirm Password"
-          onChange={handleChange}
-          value={dataPost.confirmPassword}
-        />
-        <button type="submit">Sign up</button>
-        <Link href="/login">
-          <a>
-            <button className={styles.btnSecondary}>Log in</button>
-          </a>
-        </Link>
-      </form>
+        <form onSubmit={handleSubmit}>
+          <input
+            type="text"
+            name="firstName"
+            placeholder="First Name"
+            onChange={handleChange}
+            value={dataPost.firstName}
+          />
+          <input
+            type="text"
+            name="lastName"
+            placeholder="Last Name"
+            onChange={handleChange}
+            value={dataPost.lastName}
+          />
+          <input
+            type="text"
+            name="email"
+            placeholder="Email Address"
+            onChange={handleChange}
+            value={dataPost.email}
+          />
+          <input
+            type="text"
+            name="roninAddress"
+            placeholder="Ronin Address (Can be added later)"
+            onChange={handleChange}
+            value={dataPost.roninAddress}
+          />
+          <input
+            type="password"
+            name="password"
+            placeholder="Password"
+            onChange={handleChange}
+            value={dataPost.password}
+          />
+          <input
+            type="password"
+            name="confirmPassword"
+            placeholder="Confirm Password"
+            onChange={handleChange}
+            value={dataPost.confirmPassword}
+          />
+          <button type="submit">Sign up</button>
+          <Link href="/login">
+            <a>
+              <button className={styles.btnSecondary}>Log in</button>
+            </a>
+          </Link>
+        </form>
+      </div>
     </div>
   );
 };

@@ -10,33 +10,36 @@ const Dashboard = () => {
   const [ronin, setRonin] = useState(false);
   const [battles, setBattles] = useState({});
   const [userInfo, setUserInfo] = useState({});
-  const [axies, setAxies] = useState([])
+  const [axies, setAxies] = useState([]);
   const [axieIndex, setAxieIndex] = useState(0);
   const [loading, setLoading] = useState(false);
+  const [error, setError] = useState(false);
 
-  useEffect( async () => {
-    setLoading(true)
+  useEffect(async () => {
+    setLoading(true);
     if (!user) return Router.push("/login");
     const roninAddress = user.roninAddress;
-    if (roninAddress === "") return setRonin(false)
+    if (roninAddress === "") return setRonin(false);
     setRonin(true);
-    const _battles = await getBattles(user)
-    const _userInfo = await getUserInfo(user)
-    const _axies = await getAxies(user)
-    setBattles(_battles.battles)
-    setUserInfo(_userInfo)
-    setAxies(_axies)
-    setLoading(false)
+    const _battles = (await getBattles(user)) || null;
+    const _userInfo = (await getUserInfo(user)) || null;
+    const _axies = (await getAxies(user)) || null;
+    if (!_battles || _battles === "error") return setError(true);
+    if (!_userInfo || _battles === "error") return setError(true);
+    if (!_axies || _battles === "error") return setError(true);
+    setBattles(_battles.battles);
+    setUserInfo(_userInfo);
+    setAxies(_axies);
+    setLoading(false);
   }, [user]);
-  
 
-
-  console.log(battles)
-  console.log(userInfo)
-  console.log(axies)
+  console.log(battles);
+  console.log(userInfo);
+  console.log(axies);
 
   return (
     <div>
+      {error ? <h1>Server API down or ronin address invalid</h1> : null}
       {!ronin ? (
         <h1 className={styles.unset}>Please Set Your Ronin Address First</h1>
       ) : (
@@ -46,14 +49,16 @@ const Dashboard = () => {
               {!loading ? (
                 <>
                   <div className={styles.userImage}>
-                    <Image src={`https://assets.axieinfinity.com/axies/${axies[0].id}/axie/axie-full-transparent.png`} layout="fill" objectFit="cover"/>
+                    <Image
+                      src={`https://assets.axieinfinity.com/axies/${axies[0].id}/axie/axie-full-transparent.png`}
+                      layout="fill"
+                      objectFit="cover"
+                    />
                   </div>
                 </>
               ) : null}
             </div>
-            <div className={styles.userTeam}>
-              
-            </div>
+            <div className={styles.userTeam}></div>
           </div>
           <div className={styles.col2}>
             <div className={styles.userStatistic}></div>

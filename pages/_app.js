@@ -3,10 +3,10 @@ import "../styles/globals.scss";
 import Layout from "../components/Layout";
 
 function MyApp({ Component, pageProps }) {
-  const {page, title} = Component().props
+  const { page, title } = Component().props;
   return (
     <UserProvider>
-      <Layout page={Component().type.name} title={Component().props.title}>
+      <Layout page={page} title={title}>
         <Component {...pageProps} />
       </Layout>
     </UserProvider>
