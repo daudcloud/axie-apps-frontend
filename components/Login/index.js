@@ -41,7 +41,7 @@ const Login = () => {
   };
 
   useEffect(() => {
-    if (user) Router.push("/dashboard");
+    if (user) Router.push(`/${user.roninAddress}`);
   }, [user]);
 
   return (
