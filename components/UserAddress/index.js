@@ -7,30 +7,47 @@ import styles from "./styles.module.scss";
 
 const UserAddress = ({ address }) => {
   const [user, setUser] = useUser();
-  const [ronin, setRonin] = useState(false);
   const [battles, setBattles] = useState({});
   const [userInfo, setUserInfo] = useState({});
   const [axies, setAxies] = useState([]);
   const [axieIndex, setAxieIndex] = useState(0);
   const [loading, setLoading] = useState(false);
-  const [error, setError] = useState(false);
+  const [status, setStatus] = useState({ error: false, message: "" });
 
   useEffect(async () => {
     setLoading(true);
     if (!user) return Router.push("/login");
-    const roninAddress = user.roninAddress;
-    if (roninAddress === "") return setRonin(false);
-    setRonin(true);
-    const _battles = await getBattles(user);
-    const _userInfo = await getUserInfo(user);
-    const _axies = await getAxies(user);
-    if (!_battles || _battles === "error") return setError(true);
-    if (!_userInfo || _battles === "error") return setError(true);
-    if (!_axies || _battles === "error") return setError(true);
+    const _battles = await getBattles(address);
+    const _userInfo = await getUserInfo(address);
+    const _axies = await getAxies(address);
+    if (!_battles || _battles === "error") {
+      return setStatus({
+        ...status,
+        error: true,
+        message: "Server API down or ronin address invalid",
+      });
+    }
+    if (!_userInfo || _userInfo === "error")
+      return setStatus({
+        ...status,
+        error: true,
+        message: "Server API down or ronin address invalid",
+      });
+    if (!_axies || _axies === "error")
+      return setStatus({
+        ...status,
+        error: true,
+        message: "Server API down or ronin address invalid",
+      });
     setBattles(_battles.battles);
     setUserInfo(_userInfo);
     setAxies(_axies);
     setLoading(false);
+    setStatus({
+      ...status,
+      error: false,
+      message: "",
+    });
   }, [user]);
 
   const changeImage = () => {
@@ -43,10 +60,10 @@ const UserAddress = ({ address }) => {
     return () => clearTimeout(timer);
   }, [axieIndex]);
 
-  // console.log(battles);
+  console.log(battles);
   console.log(userInfo);
-  // console.log(axies);
-  // console.log(address);
+  console.log(axies);
+  console.log(address);
 
   const formattedString = (address) => {
     let newAddress = "";
@@ -61,41 +78,47 @@ const UserAddress = ({ address }) => {
 
   return (
     <div>
-      {error ? <h1>Server API down or ronin address invalid</h1> : null}
+      {status.error ? <h1>{status.message}</h1> : null}
       {!loading ? (
-        !ronin ? (
-          <h1 className={styles.unset}>Please Set Your Ronin Address First</h1>
-        ) : (
-          <>
-            <div className={styles.col1}>
-              <div className={styles.userInfo}>
-                <div className={styles.userImage}>
-                  <Image
-                    src={`https://assets.axieinfinity.com/axies/${axies[axieIndex].id}/axie/axie-full-transparent.png`}
-                    layout="fill"
-                    objectFit="cover"
-                  />
-                </div>
-                <div className={styles.userName}>{userInfo.name}</div>
-                <div
-                  className={styles.userAddress}
-                  onClick={() => copyToClipboard(address)}
-                >
-                  {formattedString(address)}
-                  <i className="fa-solid fa-copy"></i>
-                </div>
-                <div className={styles.userRank}>
-                  {new Intl.NumberFormat("en-EN").format(userInfo.rank)}
-                </div>
+        <>
+          <div className={styles.col1}>
+            <div className={styles.userInfo}>
+              <div className={styles.userImage}>
+                <Image
+                  src={`https://assets.axieinfinity.com/axies/${axies[axieIndex].id}/axie/axie-full-transparent.png`}
+                  layout="fill"
+                  objectFit="cover"
+                />
               </div>
-              <div className={styles.userTeam}></div>
+              <div className={styles.userName}>{userInfo.name}</div>
+              <div
+                className={styles.userAddress}
+                onClick={() => copyToClipboard(address)}
+              >
+                {formattedString(address)}
+                <i className="fa-solid fa-copy"></i>
+              </div>
+              <div className={styles.userRank}>
+                Rank:{` `}
+                {new Intl.NumberFormat("en-EN").format(userInfo.rank)}
+              </div>
+              <div className={styles.userMmr}>
+                MMR: {` `}
+                {new Intl.NumberFormat("en-EN").format(userInfo.mmr)}
+              </div>
             </div>
-            <div className={styles.col2}>
-              <div className={styles.userStatistic}></div>
-              <div className={styles.userBattles}></div>
+            <div className={styles.userTeam}>
+              <div className={styles.claimable}>
+                <span>Claimable</span>
+                <span></span>
+              </div>
             </div>
-          </>
-        )
+          </div>
+          <div className={styles.col2}>
+            <div className={styles.userStatistic}></div>
+            <div className={styles.userBattles}></div>
+          </div>
+        </>
       ) : null}
     </div>
   );

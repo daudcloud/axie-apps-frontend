@@ -1,9 +1,7 @@
-export const getBattles = async (user) => {
+export const getBattles = async (address) => {
   try {
-    if (!user) return null;
-    if (user.roninAddress === "") return null;
     const res = await fetch(
-      `https://game-api.axie.technology/logs/pvp/${user.roninAddress}`
+      `https://game-api.axie.technology/logs/pvp/${address}`
     );
     const data = await res.json();
     return data;
@@ -13,12 +11,10 @@ export const getBattles = async (user) => {
   }
 };
 
-export const getUserInfo = async (user) => {
+export const getUserInfo = async (address) => {
   try {
-    if (!user) return null;
-    if (user.roninAddress === "") return null;
     const res = await fetch(
-      `https://game-api.axie.technology/api/v1/${user.roninAddress}`
+      `https://game-api.axie.technology/api/v1/${address}`
     );
     const data = await res.json();
     return data;
@@ -28,12 +24,10 @@ export const getUserInfo = async (user) => {
   }
 };
 
-export const getUserAxies = async (user) => {
+export const getUserAxies = async (address) => {
   try {
-    if (!user) return null;
-    if (user.roninAddress === "") return null;
     const res = await fetch(
-      `https://axieinfinity.com/graphql-server-v2/graphql?query={axies(from:0,size:100,sort:IdAsc,owner:%22${user.roninAddress.replace(
+      `https://axieinfinity.com/graphql-server-v2/graphql?query={axies(from:0,size:100,sort:IdAsc,owner:%22${address.replace(
         "ronin:",
         "0x"
       )}%22){total,results{id}}}`
@@ -46,11 +40,9 @@ export const getUserAxies = async (user) => {
   }
 };
 
-export const getAxies = async (user) => {
+export const getAxies = async (address) => {
   try {
-    if (!user) return null;
-    const userAxies = await getUserAxies(user);
-    if (!userAxies) return null;
+    const userAxies = await getUserAxies(address);
     const baseUrl = "https://api.axie.technology/getaxies/";
     let url = baseUrl;
     for (let i = 0; i < userAxies.length; i++) {

@@ -35,7 +35,7 @@ const User = ({ setModal, setMenuOpen }) => {
         </div>
         {userOption && (
           <ul className={styles.dropdown}>
-            <Link href={`/${user.roninAddress}`}>
+            <Link href={`/dashboard/${user.roninAddress}`}>
               <a>Dashboard</a>
             </Link>
             <Link href={`/${user._id}/settings`}>
