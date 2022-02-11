@@ -75,7 +75,7 @@ const Card = () => {
                 <div className={styles.cardFooter}>
                   <div className={styles.cardEffect}>
                     <Image
-                      src={card.effectIcon}
+                      src={`https://cdn.axieinfinity.com/game/cards/effect-icons/${card.effectIcon}`}
                       layout="fill"
                       objectFit="contain"
                     />
