@@ -1,43 +1,37 @@
 export const getBattles = async (user) => {
-  if (!user) return null;
-  if (user.roninAddress === "") return null;
   try {
+    if (!user) return null;
+    if (user.roninAddress === "") return null;
     const res = await fetch(
-      `https://game-api.axie.technology/logs/pvp/${user.roninAddress}`,
-      {
-        mode: "no-cors",
-      }
+      `https://game-api.axie.technology/logs/pvp/${user.roninAddress}`
     );
     const data = await res.json();
     return data;
   } catch (error) {
-    console.log(error);
+    console.error(error);
     return "error";
   }
 };
 
 export const getUserInfo = async (user) => {
-  if (!user) return null;
-  if (user.roninAddress === "") return null;
   try {
+    if (!user) return null;
+    if (user.roninAddress === "") return null;
     const res = await fetch(
-      `https://game-api.axie.technology/api/v1/${user.roninAddress}`,
-      {
-        mode: "no-cors",
-      }
+      `https://game-api.axie.technology/api/v1/${user.roninAddress}`
     );
     const data = await res.json();
     return data;
   } catch (error) {
-    console.log(error);
+    console.error(error);
     return "error";
   }
 };
 
 export const getUserAxies = async (user) => {
-  if (!user) return null;
-  if (user.roninAddress === "") return null;
   try {
+    if (!user) return null;
+    if (user.roninAddress === "") return null;
     const res = await fetch(
       `https://axieinfinity.com/graphql-server-v2/graphql?query={axies(from:0,size:100,sort:IdAsc,owner:%22${user.roninAddress.replace(
         "ronin:",
@@ -47,16 +41,16 @@ export const getUserAxies = async (user) => {
     const { data } = await res.json();
     return data.axies.results;
   } catch (error) {
-    console.log(error);
+    console.error(error);
     return "error";
   }
 };
 
 export const getAxies = async (user) => {
-  if (!user) return null;
-  const userAxies = await getUserAxies(user);
-  if (!userAxies) return null;
   try {
+    if (!user) return null;
+    const userAxies = await getUserAxies(user);
+    if (!userAxies) return null;
     const baseUrl = "https://api.axie.technology/getaxies/";
     let url = baseUrl;
     for (let i = 0; i < userAxies.length; i++) {
@@ -70,7 +64,7 @@ export const getAxies = async (user) => {
     const data = res.json();
     return data;
   } catch (error) {
-    console.log(error);
+    console.error(error);
     return "error";
   }
 };

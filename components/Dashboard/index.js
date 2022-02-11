@@ -21,9 +21,9 @@ const Dashboard = () => {
     const roninAddress = user.roninAddress;
     if (roninAddress === "") return setRonin(false);
     setRonin(true);
-    const _battles = (await getBattles(user)) || null;
-    const _userInfo = (await getUserInfo(user)) || null;
-    const _axies = (await getAxies(user)) || null;
+    const _battles = await getBattles(user);
+    const _userInfo = await getUserInfo(user);
+    const _axies = await getAxies(user);
     if (!_battles || _battles === "error") return setError(true);
     if (!_userInfo || _battles === "error") return setError(true);
     if (!_axies || _battles === "error") return setError(true);
@@ -33,9 +33,19 @@ const Dashboard = () => {
     setLoading(false);
   }, [user]);
 
-  console.log(battles);
-  console.log(userInfo);
-  console.log(axies);
+  const changeImage = () => {
+    if (axieIndex >= 2) return setAxieIndex(0);
+    setAxieIndex((prev) => prev + 1);
+  };
+
+  useEffect(() => {
+    let timer = setTimeout(changeImage, 3000);
+    return () => clearTimeout(timer);
+  }, [axieIndex]);
+
+  // console.log(battles);
+  // console.log(userInfo);
+  // console.log(axies);
 
   return (
     <div>
@@ -50,7 +60,7 @@ const Dashboard = () => {
                 <>
                   <div className={styles.userImage}>
                     <Image
-                      src={`https://assets.axieinfinity.com/axies/${axies[0].id}/axie/axie-full-transparent.png`}
+                      src={`https://assets.axieinfinity.com/axies/${axies[axieIndex].id}/axie/axie-full-transparent.png`}
                       layout="fill"
                       objectFit="cover"
                     />
